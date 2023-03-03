@@ -37,7 +37,6 @@ const CreateQuestions = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': "application/json",
-                    'accept':'application/json'
                 },
                 body: JSON.stringify({
                     questions,

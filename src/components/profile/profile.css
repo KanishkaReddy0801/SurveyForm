@@ -1,0 +1,26 @@
+.profile {
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 100px;
+}
+
+.details {
+    display: flex;
+}
+
+.details span {
+    font-size: 20px;
+    color: gray;
+}
+
+#name, #phone {
+    margin-bottom: 100px;
+}
+
+#profession {
+    margin-left: 400px;
+}
+
+#mail {
+    margin-left: 335px;
+}

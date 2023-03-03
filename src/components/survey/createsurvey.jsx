@@ -36,12 +36,12 @@ function CreateSurvey () {
     const createSurvey = async e => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('fname', fname);
-        formData.append('startdate', startdate);
-        formData.append('enddate', enddate);
-        formData.append('description', description);
-        formData.append('criteria', criteria);
-        formData.append('surveytype', surveytype);
+        formData.append('fname', fname.current.value);
+        formData.append('startdate', startdate.current.value);
+        formData.append('enddate', enddate.current.value);
+        formData.append('description', description.current.value);
+        formData.append('criteria', criteria.current.value);
+        formData.append('surveytype', surveytype.current.value);
         formData.append('upload', upload);
       
         try {
@@ -77,7 +77,7 @@ function CreateSurvey () {
             </div>
         </header>
         <main>
-            <form action="/createsurvey" onSubmit={createSurvey}>
+            <form action="/createsurvey" >
             <div className="main1">
             <div>
                 <h2>Name</h2>

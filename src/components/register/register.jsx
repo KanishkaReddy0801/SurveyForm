@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 function Register() {
     const navigate = useNavigate();
-    const [name, setName] = useState('');
+    const [username, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [profession, setProfession] = useState('');
@@ -15,7 +15,7 @@ function Register() {
         event.preventDefault();
     
         // Validation logic
-        if (name.trim() === '') {
+        if (username.trim() === '') {
             alert('Name is required');
             return;
         }
@@ -58,7 +58,7 @@ function Register() {
                 'Content-Type': "application/json",
             },
             body: JSON.stringify({
-                name,
+                username,
                 email,
                 phone,
                 profession,
@@ -92,7 +92,7 @@ function Register() {
                 <p>Register to continue access pages</p>
                 <form method='POST' action='/register' onSubmit={registerUser}>
                 <div className='inputs'>
-                    <input type='text' placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+                    <input type='text' placeholder="Name" value={username} onChange={(e) => setUserName(e.target.value)} />
                     <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                     <br />
                     <div className='rline'>
