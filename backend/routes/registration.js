@@ -5,9 +5,29 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const secret = "RESTAPI";
 
-router.get("/register", (req, res) => {
-  res.send("Welcome to Registration");
+router.get("/register", async (req, res) => {
+  try {
+    const users = await user.find({});
+    if (!users) {
+      return res.status(404).json({
+        status: "Failed",
+        message: "Users not found",
+      });
+    }
+    res.json({
+      status: "success",
+      data: users,
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: "Failed",
+      message: e.message,
+    });
+  }
 });
+
+
+
 
 router.post("/register", async (req, res) => {
   try {
