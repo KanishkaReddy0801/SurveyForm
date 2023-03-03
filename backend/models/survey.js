@@ -3,8 +3,8 @@ const mongoose = require("mongoose"); //call package
 const surveySchema = new mongoose.Schema(
   {
     "fname": String,           
-    "startdate": Date,       
-    "enddate": Date,         
+    "startdate": String,       
+    "enddate": String,         
     "description": String,     
     "criteria": String,        
     "surveytype": String,      
