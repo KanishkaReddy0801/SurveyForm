@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './surveylist.css'
 import { AiFillFilter } from "react-icons/ai";
 import { AiFillHome } from "react-icons/ai";
 import { AiOutlineAlignLeft } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { AiOutlineTeam  } from "react-icons/ai";
+import { MdEdit } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 const SurveyList = () => {
+    const [surveys, setSurveys] = useState([]);
     const create = () => {
         window.location.href = '/createsurvey'
     }
@@ -18,6 +21,16 @@ const SurveyList = () => {
     const profile = () => {
         window.location.href = '/profile'
     }
+    useEffect(() => {
+        fetch('http://localhost:8080/api/getallsurvey')
+        .then(res => res.json())
+        .then(data => {
+            setSurveys(data.info)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [])
     return (
         <div>
         <nav className='navbar'>
@@ -50,6 +63,19 @@ const SurveyList = () => {
                 <h3>End Date</h3>
                 <h3>Actions</h3>
             </div>
+            {surveys.map(survey => (
+                <div className='survey' key={survey._id}>
+                    <p>{survey.fname}</p>
+                    <p>{survey.description}</p>
+                    <p>{survey.surveytype}</p>
+                    <p>{survey.startdate}</p>
+                    <p>{survey.enddate}</p>
+                    <div className='action'>
+                        <MdEdit className='edit'/>
+                        <RiDeleteBin6Line className='delete'/>
+                    </div>
+                </div>
+            ))}
         </main>
         </div>
     )

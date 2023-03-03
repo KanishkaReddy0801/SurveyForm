@@ -5,17 +5,11 @@ import { AiFillHome } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { AiOutlineTeam  } from "react-icons/ai";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { FaCog } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
 
-const CreateQuestions = () => {
-    const [options, setOptions] = useState("")
-    const [type, setType] = useState("")
-    const [question, setQuestion] = useState("")
-    const [questions, setQuestions] = useState([{ question: ""}])
-    const addQuestion = () => {
-        setQuestions([...questions, {question: ""}])
-    }
+const QuestionForm = () => {
+    const [questions, setQuestions] = useState([
+      { text: "", options: ["", "", ""], answerIndex: null }
+    ]);
     const logout = () => {
         window.location.href = '/'
     }
@@ -31,27 +25,45 @@ const CreateQuestions = () => {
     const profile = () => {
         window.location.href = '/profile'
     }
-    const savequestions = async () => {
-        try {
-            const response = await fetch("http://localhost:8080/api/createqstns", questions, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': "application/json",
-                },
-                body: JSON.stringify({
-                    questions,
-                    options,
-                    type,
-                })
-            });
-            const data = await response.json();
-            if(data.status === 'ok') {
-                window.location.href = '/survey'
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    const handleQuestionChange = (event, questionIndex) => {
+        const updatedQuestions = [...questions];
+        updatedQuestions[questionIndex].text = event.target.value;
+        setQuestions(updatedQuestions);
+      };
+    
+      const handleOptionChange = (event, questionIndex, optionIndex) => {
+        const updatedQuestions = [...questions];
+        updatedQuestions[questionIndex].options[optionIndex] = event.target.value;
+        setQuestions(updatedQuestions);
+      };
+    
+      const handleAnswerChange = (event, questionIndex, optionIndex) => {
+        const updatedQuestions = [...questions];
+        updatedQuestions[questionIndex].answerIndex = optionIndex;
+        setQuestions(updatedQuestions);
+      };
+    
+      const handleAddQuestion = () => {
+        setQuestions([
+          ...questions,
+          { text: "", options: ["", "", ""], answerIndex: null }
+        ]);
+      };
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("Form submitted with questions: ", questions);
+        fetch('http://localhost:8080/api/createqstns', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(questions)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
+      };
     return (
         <div>
             <nav className='navbar'>
@@ -70,49 +82,57 @@ const CreateQuestions = () => {
             <h1>Create Questions</h1>
             </div>
             <div>
-            <button disabled={!question} className="previewbtn" onClick={preview}>Preview</button>
-            <button disabled={!question[0]} className="savebtn" onClick={savequestions}>Save</button>
+            <button disabled={!questions} className="previewbtn" onClick={preview}>Preview</button>
+            <button disabled={!questions[0]} className="savebtn">Save</button>
             </div>
         </header>
         <main>
-            {questions.map((question, index) => (
-                <div key={index} className="main">
-                    <h1>Q{index+1}</h1>
-                    <div>
-                        <h2>Question</h2>
-                        <input value={question.question} onChange={(event) => {
-                            const newQuestions = [...questions];
-                            newQuestions[index].question = event.target.value;
-                            setQuestion(newQuestions) }} 
-                            id="quein" type="text" placeholder="Enter Question"/>
-                        <div id="radio">
-                            <div id="val">
-                                <input onChange={(e) => setOptions(e.target.value)} type="radio" value={"value"} /> value
-                            </div>
-                             <div id="val">
-                                <input onChange={(e) => setOptions(e.target.value)} type="radio" value={"value"} /> value 
-                            </div>
-                            <div id="val">
-                                <input onChange={(e) => setOptions(e.target.value)} type="radio" value={"value"} /> value
-                            </div>
+            <form className="main" onSubmit={handleSubmit}>
+                {questions.map((question, index) => (
+                    <div key={index}>
+                        <div className="quediv">
+                        <h1>Q {index+1}</h1>
+                        <label className="quein">
+                            Question:
+                                <input
+                                type="text"
+                                value={question.text}
+                                onChange={(event) => handleQuestionChange(event, index)}/>
+                        </label>
                         </div>
+                        <br />
+                        {question.options.map((option, optionIndex) => (
+                            <div key={optionIndex}>
+                                <label className="radio">
+                                    <input
+                                    type="radio"
+                                    name={`correct-answer-${index}`}
+                                    value={optionIndex}
+                                    checked={question.answerIndex === optionIndex}
+                                    onChange={(event) =>
+                                    handleAnswerChange(event, index, optionIndex)}/>
+                                </label>
+                                <label className="option">
+                                    {optionIndex + 1}
+                                        <input
+                                        type="text"
+                                        value={option}
+                                        placeholder='value'
+                                        onChange={(event) =>
+                                        handleOptionChange(event, index, optionIndex)}/>
+                                </label>
+                                
+                            </div>
+                        ))}
                     </div>
-                    <FaCog className="settings" />
-                    <div id="quetype">
-                        <FaTimes className="close"/>
-                        <h6>Question Type</h6>
-                        <select className="selectque">
-                            <option onChange={(e) => setType(e.target.value)} value="Multiple-Choice">Multiple Choice</option>
-                            <option onChange={(e) => setType(e.target.value)} value="Single-Choice">Single Choice</option>
-                        </select>
-                    </div>
-                </div>
                 ))}
-            
+                <br />
+                <button className="sub" type="submit">Submit</button>
+            </form>
         </main>
-        <button onClick={addQuestion} id="addque">Add Question</button>
+        <button onClick={handleAddQuestion} id="addque">Add Question</button>
         </div>
     )
 }
 
-export default CreateQuestions
+export default QuestionForm

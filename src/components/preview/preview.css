@@ -2,37 +2,5 @@
     font-family: montserrat;
     margin-left: 250px;
     margin-right: 250px;
-}
-
-h5 {
-    font-size: 14px;
-    margin-top: 21px;
-    color: #278DF1;
-}
-
-.quehead {
-    display: flex;
-}
-
-.qline {
-    margin-top: 30px;
-    margin-left: 10px;
-    width: 765px;
-    height: 1px;
-    background-color: rgb(200, 200, 200);
-}
-
-.no {
-    margin-left: 20px;
-}
-
-main p {
-    font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 27px;
-}
-
-main span {
-    font-size: 12px;
-    font-weight: 500;
+    width: 1150px;
 }

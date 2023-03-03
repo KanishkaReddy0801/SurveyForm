@@ -170,3 +170,27 @@
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.survey {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FAFDFF;
+    margin-left: 170px;
+    width: 1020px;
+    opacity: 1;
+    margin-top: 17px;
+}
+
+.survey p {
+    font-size: 14px;
+    font-weight: lighter;
+    font-family: montserrat;
+}
+
+.action {
+    margin-top: 13px;
+}
+
+.delete {
+    margin-left: 15px;
+}

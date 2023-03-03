@@ -68,84 +68,52 @@
 }
 
 .main h1 {
+    display: flex;
     font-size: 16px;
     font-weight: 600;
-    margin-right: 60px;
     margin-top: 10px;
     margin-left: 10px;
+    margin-right: 60px;
 }
 
-.main h2 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 10px;
-}
 
-#quein {
+.quein {
     width: 400px;
     height: 25px;
-    border: 1px solid rgb(163, 163, 163);
-    background-color: white;
-}
-
-#quein::placeholder {
-    color: rgb(193, 193, 193);
-}
-
-#radio {
-    display: grid;
-    width: 2px;
-}
-
-#val {
-    display: flex;
-    padding-top: 10px;
-    color: rgb(172, 172, 172);
-}
-
-#val input {
-    margin-right: 12px;
-    border: 2px solid black;
-}
-
-.settings {
-    margin-left: 330px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-#quetype {
-    background-color: white;
-    margin-left: -155px;
-    margin-top: 10px;
-    height: 80px;
-    width: 115px;
-    color: black;
-    box-shadow: 0px 3px 6px #00000029;
-    border: 1px solid #E3E3E3;
-    border-radius: 6px;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: none;
-}
-
-#quetype h6 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 12px;
+    margin-top: 8px;
+    font-size: 16px;
     font-weight: 600;
 }
 
-.selectque {
-    top: 0;
-    color: gray;
+.quein input {
+    width: 300px;
+    height: 25px;
+    background-color: white;
+    border: none;
 }
 
+.quediv {
+    display: flex;
+}
 
-.close {
-    margin-left: 110px;
-    margin-top: 8px;
-    cursor: pointer;
+.radio {
+    width: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.option input {
+    border: none;
+    background-color: #F4F8FD;
+}
+
+.option {
+    font-family: montseratt;
+    font-size: 14px;
+}
+
+.option input::placeholder {
+    color: rgb(196, 196, 196);
 }
 
 #addque {
@@ -159,4 +127,16 @@
     font-weight: bold;
     border-radius: 3px;
     cursor: pointer;
+}
+
+.sub {
+    width: 100px;
+    height: 30px;
+    background-color: #F4F8FD;
+    border: 1px solid #278DF1;
+    color: #278DF1;
+    border-radius: 2px;
+    margin-top: 11px;
+    cursor: pointer;
+    margin-left: 250px;
 }

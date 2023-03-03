@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import './preview.css'
 import { AiFillHome } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
@@ -6,6 +6,18 @@ import { AiOutlineTeam  } from "react-icons/ai";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
 const Preview = () => {
+    const [questions, setQuestions] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:8080/api/createqstns')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.data.status === 'ok') {
+                setQuestions(data.data)
+            }
+        })
+        .catch(err => console.log(err))
+    }, [])
     const logout = () => {
         window.location.href = '/'
     }
@@ -44,15 +56,16 @@ const Preview = () => {
             </div>
         </header>
         <main id="main">
-            <div>
-                <div className="quehead">
-                <h5>Question 1</h5>
-                <div className="qline"></div>
+        {questions.map((question, index) => (
+                <div key={index}>
+                    <h3>{question.text}</h3>
+                    <ul>
+                        {question.options.map((option, optionIndex) => (
+                            <li key={optionIndex}>{option}</li>
+                        ))}
+                    </ul>
                 </div>
-                <p>Question will be here</p>
-                <input type="radio" /> <span>Yes</span>
-                <input className="no" type="radio" /> <span>No</span>
-            </div>
+            ))}
         </main>
         </div>
     )
