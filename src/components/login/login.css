@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+.logincontainer {
+        background-image: linear-gradient(to bottom, #ffff, #fff ,#a2e1fc, #6ED4FF);
+        height: 750px;
+        font-family: montserrat;
+        display: flex;
+        justify-content: space-between;
+}
+
+.loginregister {
+    font-weight: bold;
+    color: rgba(77, 77, 77, 0.909);
+    margin-left: 200px;
+    margin-top: 250px;
+}
+
+.loginregister h1 {
+    font-size: 36px;
+}
+
+.second, .third {
+    margin-top: 20px;
+}
+
+.signin {
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+.smallpara {
+    margin-top: 80px;
+    font-size: 11px;
+    font-weight: lighter;
+}
+
+.registerbutton {
+    width: 130px;
+    border-radius: 15px;
+    border: none;
+    background-color: #278DF1;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+}
+
+.login {
+    margin-top: 200px;
+    margin-right: 100px;
+    background-color: white;
+    height: 450px;
+    width: 450px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 30px #00000029;
+    text-align: center;
+}
+
+.login h1 {
+    margin-top: 60px;
+    font-size: 36px;
+}
+
+.login p {
+    padding-top: 0px;
+    font-size: 16px;
+    font-weight: lighter;
+    color: gray;
+}
+
+.login form {
+    color: gray;
+}
+
+.login input {
+    border: 0;
+    width: 350px;
+    height: 25px;
+    margin-top: 25px;
+    color: black;
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+.line {
+    height: 1px;
+    background-color: gray;
+    width: 320px;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+#btn {
+    margin-top: 60px;
+    width: 110px;
+    background-color: #278DF1;
+    color: white;
+    opacity: 1;
+    height: 30px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: none;
+}
