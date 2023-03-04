@@ -12,12 +12,6 @@ const questions = require('./routes/questions');
 const getsurvey =require('./routes/getsurvey');
 
 const cors = require("cors");
-const corsOptions ={
-    origin:'*', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200,
- }
-
 
 const multer = require('multer')
 
@@ -50,14 +44,8 @@ mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/surveyfor
 
 app.use(express.json())//to test data while api to work
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
-  
-app.use(cors(corsOptions));
+
+app.use(cors());
 app.use(express.json());
 
 //authtication call
@@ -68,8 +56,7 @@ app.use("/api/users", userRoute);
 //another method
 app.use('/api', registrationRoute);
 app.use('/api', loginRoute)
-
-
+//create survey
 app.use('/api', survey)
 
 app.use('/api', questions)
