@@ -22,6 +22,30 @@ route.get("/getallsurvey", cors(), async (req, res) => {
   }
 });
 
+// DELETE survey by ID
+route.delete("/deletesurvey/:id", cors(), async (req, res) => {
+  try {
+    const deletedSurvey = await data.findByIdAndDelete(req.params.id);
+    if (!deletedSurvey) {
+      return res.status(404).json({
+        status: "failed",
+        message: "Survey not found",
+      });
+    }
+    res.status(200).json({
+      status: "passed",
+      message: "Survey deleted successfully",
+      deletedSurvey,
+    });
+  } catch (e) {
+    res.status(400).json({
+      status: "failed",
+      message: e.message,
+    });
+  }
+});
+
+
 //suvey by id
 route.get("/getallsurvey/:id", cors(), async (req, res) => {
   try {

@@ -26,6 +26,27 @@ router.get("/register", async (req, res) => {
   }
 });
 
+router.get("/register/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const userObj = await user.findById(id);
+    if (!userObj) {
+      return res.status(404).json({
+        status: "Failed",
+        message: "User not found",
+      });
+    }
+    res.json({
+      status: "success",
+      data: userObj,
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: "Failed",
+      message: e.message,
+    });
+  }
+});
 
 
 
