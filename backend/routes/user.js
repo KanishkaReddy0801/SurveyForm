@@ -1,6 +1,6 @@
-const { verifyToken } = require('./verifyToken');
-const {verifyTokenAndAuthorization}=require('./verifyToken')
-const {verifyTokenAndAdmin}=require('./verifyToken');
+const { verifyToken } = require('./verifytoken');
+const {verifyTokenAndAuthorization}=require('./verifytoken')
+const {verifyTokenAndAdmin}=require('./verifytoken');
 
 const router=require('express').Router();
 

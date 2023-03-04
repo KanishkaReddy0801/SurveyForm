@@ -34,7 +34,7 @@ const dotenv=require("dotenv");//call the library
 dotenv.config();//
 
 mongoose.set('strictQuery', false)
-mongoose.connect(`mongodb://localhost:27017/surveyform`,(err) => {
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/surveyform`,(err) => {
     if(err) {
         console.log(`${err} error connecting to mongodb`);
     }else {
@@ -57,7 +57,7 @@ app.use("/api/users", userRoute);
 app.use('/api', registrationRoute);
 app.use('/api', loginRoute)
 
-//create survey
+
 app.use('/api', survey)
 
 app.use('/api', questions)

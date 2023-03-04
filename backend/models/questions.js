@@ -6,7 +6,6 @@ const questionSchema = new mongoose.Schema({
   },
   options: [{ 
     type: String,
-    required: true 
   }],
   answerIndex: { 
     type: Number, required: true 
