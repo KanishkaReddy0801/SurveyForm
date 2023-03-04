@@ -83,13 +83,13 @@ const QuestionForm = () => {
             </div>
             <div>
             <button disabled={!questions} className="previewbtn" onClick={preview}>Preview</button>
-            <button disabled={!questions[0]} className="savebtn">Save</button>
+            <button disabled={!questions[0]} onClick={handleSubmit} className="savebtn">Save</button>
             </div>
         </header>
         <main>
             <form className="main" onSubmit={handleSubmit}>
                 {questions.map((question, index) => (
-                    <div key={index}>
+                    <div className="mainn" key={index}>
                         <div className="quediv">
                         <h1>Q {index+1}</h1>
                         <label className="quein">
@@ -127,10 +127,10 @@ const QuestionForm = () => {
                     </div>
                 ))}
                 <br />
-                <button className="sub" type="submit">Submit</button>
+                <button onClick={handleAddQuestion} type="submit" id="addque">Add Question</button>
             </form>
         </main>
-        <button onClick={handleAddQuestion} id="addque">Add Question</button>
+        
         </div>
     )
 }
