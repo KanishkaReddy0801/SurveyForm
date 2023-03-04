@@ -21,6 +21,21 @@ const SurveyList = () => {
     const profile = () => {
         window.location.href = '/profile'
     }
+    const onDeleteSurvey = (surveyId) => {
+        fetch(`http://localhost:8080/api/deletesurvey/${surveyId}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const updatedSurveys = surveys.filter((survey) => survey._id !== surveyId);
+            setSurveys(updatedSurveys);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      
+      
     useEffect(() => {
         fetch('http://localhost:8080/api/getallsurvey')
         .then(res => res.json())
@@ -72,7 +87,7 @@ const SurveyList = () => {
                     <p>{survey.enddate}</p>
                     <div className='action'>
                         <MdEdit className='edit'/>
-                        <RiDeleteBin6Line className='delete'/>
+                        <RiDeleteBin6Line onClick={() => onDeleteSurvey(survey._id)} className='delete'/>
                     </div>
                 </div>
             ))}
