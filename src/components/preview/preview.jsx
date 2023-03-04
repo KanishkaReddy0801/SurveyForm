@@ -4,16 +4,18 @@ import { AiFillHome } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { AiOutlineTeam  } from "react-icons/ai";
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import BASE_URL from '../../helper'
 
 const Preview = () => {
     const [questions, setQuestions] = useState([])
     useEffect(() => {
-        fetch('http://localhost:8080/api/createqstns')
+        fetch(`${BASE_URL}/createqstns`)
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            if(data.data.status === 'ok') {
+            if(data.status === 'ok') {
                 setQuestions(data.data)
+                console.log(data.data)
             }
         })
         .catch(err => console.log(err))
@@ -56,12 +58,16 @@ const Preview = () => {
             </div>
         </header>
         <main id="main">
-        {questions.map((question, index) => (
+        {questions.length > 0 && questions.map((data, index) => (
                 <div key={index}>
-                    <h3>{question.text}</h3>
+                    <div className="prline">
+                    <h3>Question {index+1}</h3>
+                    <div className="pline"></div>
+                    </div>
+                    <h4>{data.text}</h4>
                     <ul>
-                        {question.options.map((option, optionIndex) => (
-                            <li key={optionIndex}>{option}</li>
+                        {data.options.map((options, answerIndex) => (
+                            <li key={answerIndex}>Option{index+1}: <span>{options}</span></li>
                         ))}
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
 import './login.css'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import BASE_URL from '../../helper'
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ function Login() {
             alert('Password is required');
             return;
         }
-        const resp = await fetch('http://localhost:8080/api/login', {
+        const resp = await fetch(`${BASE_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json",

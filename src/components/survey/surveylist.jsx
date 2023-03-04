@@ -7,6 +7,7 @@ import { FaList } from "react-icons/fa";
 import { AiOutlineTeam  } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import BASE_URL from '../../helper';
 const SurveyList = () => {
     const [surveys, setSurveys] = useState([]);
     const create = () => {
@@ -22,7 +23,7 @@ const SurveyList = () => {
         window.location.href = '/profile'
     }
     const onDeleteSurvey = (surveyId) => {
-        fetch(`http://localhost:8080/api/deletesurvey/${surveyId}`, {
+        fetch(`${BASE_URL}/deletesurvey/${surveyId}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -37,7 +38,7 @@ const SurveyList = () => {
       
       
     useEffect(() => {
-        fetch('http://localhost:8080/api/getallsurvey')
+        fetch(`${BASE_URL}/getallsurvey`)
         .then(res => res.json())
         .then(data => {
             setSurveys(data.info)

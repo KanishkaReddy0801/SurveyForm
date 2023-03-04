@@ -4,6 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { AiOutlineTeam  } from "react-icons/ai";
 import axios from 'axios';
+import BASE_URL from '../../helper'
 
 function CreateSurvey () {
     const [filename, setFileName] = useState("");
@@ -45,7 +46,7 @@ function CreateSurvey () {
         formData.append('upload', upload);
       
         try {
-            const res = await axios.post('http://localhost:8080/api/createsurvey', formData, {
+            const res = await axios.post(`${BASE_URL}/createsurvey`, formData, {
                 headers: {
                     'Content-Type' : 'multipart/form-data'
                 }
@@ -107,9 +108,9 @@ function CreateSurvey () {
                 <h2>Type of Survey</h2>
                 <select name="Select" id="surveyselect" ref={surveytype}>
                     <option value="option1">select</option>
-                    <option value="option2">2</option>
-                    <option value="option3">3</option>
-                    <option value="option4">4</option>
+                    <option value="option2">Educational</option>
+                    <option value="option3">Personal</option>
+                    <option value="option4">Professional</option>
                 </select>
             </div>
             <div>

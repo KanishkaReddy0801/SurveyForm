@@ -4,3 +4,38 @@
     margin-right: 250px;
     width: 1150px;
 }
+
+#main h3 {
+    font-family: montserrat;
+    margin-left: 20px;
+    font-weight: 600;
+    color: #3286DD;
+    font-size: 15px;
+}
+
+.pline {
+    width: 740px;
+    height: 1px;
+    background-color: #adb2b8;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+.prline {
+    display: flex;
+}
+
+#main h4 {
+    font-family: montserrat;
+    margin-left: 25px;
+    font-weight: 600;
+}
+
+
+#main li {
+    font-weight: 500;
+    display: inline-block;
+    margin-right: 20px;
+    color: #3286DD;
+}
+

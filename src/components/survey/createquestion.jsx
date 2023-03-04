@@ -5,6 +5,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { AiOutlineTeam  } from "react-icons/ai";
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import BASE_URL from "../../helper";
 
 const QuestionForm = () => {
     const [questions, setQuestions] = useState([
@@ -53,14 +54,15 @@ const QuestionForm = () => {
       const handleSubmit = (event) => {
         event.preventDefault();
         console.log("Form submitted with questions: ", questions);
-        fetch('http://localhost:8080/api/createqstns', {
+        fetch(`${BASE_URL}/createqstns`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(questions)
         })
-        .then(response => response.json())
+        .then(response => response.json(), {
+        })
         .then(data => console.log(data))
         .catch(error => console.log(error))
       };
@@ -113,7 +115,6 @@ const QuestionForm = () => {
                                     handleAnswerChange(event, index, optionIndex)}/>
                                 </label>
                                 <label className="option">
-                                    {optionIndex + 1}
                                         <input
                                         type="text"
                                         value={option}

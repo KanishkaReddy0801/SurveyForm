@@ -4,6 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 import { FaList } from "react-icons/fa";
 import { AiOutlineTeam  } from "react-icons/ai";
 import axios from 'axios'
+import BASE_URL from '../../helper'
 
 const Profile = () => {
     const [userData, setUserData] = useState({})
@@ -14,7 +15,7 @@ const Profile = () => {
         window.location.href = '/survey'
     }
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/register`)
+        axios.get(`${BASE_URL}/register`)
         .then(response => {
             console.log(response.data)
             setUserData(response.data.data)

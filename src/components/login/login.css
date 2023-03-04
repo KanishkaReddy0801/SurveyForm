@@ -43,6 +43,7 @@
     font-size: 12px;
     font-weight: bold;
     height: 28px;
+    cursor: pointer;
 }
 
 .login {
@@ -100,4 +101,5 @@
     border-radius: 12px;
     font-weight: bold;
     border: none;
+    cursor: pointer;
 }

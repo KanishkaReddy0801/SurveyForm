@@ -1,6 +1,7 @@
 import './register.css';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import BASE_URL from '../../helper';
 
 function Register() {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ function Register() {
             return;
         }
 
-        const response = await fetch('http://localhost:8080/api/register', {
+        const response = await fetch(`${BASE_URL}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json",
